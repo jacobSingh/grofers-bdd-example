@@ -29,9 +29,8 @@ def set_up_selenium():
     
 	return driver
 
-def before_all(context):
+def before_scenario(context):
 	context.driver = set_up_selenium()
 
-def after_all(context):
- 	context.driver.quit()
-
+def after_scenario(context):
+	context.driver.quit()
