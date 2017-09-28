@@ -65,8 +65,6 @@ def step_cart_total_should(context, multiplier):
 
     cart_total = context.page.shopping_cart.total
     assert_that(expected_price, equal_to(cart_total))
-    # THis is an anti-pattern, but it isn't closing on its own
-    context.driver.quit()
 
 @then('the title will be {expected_title}')
 def step_title_assert(context, expected_title):
