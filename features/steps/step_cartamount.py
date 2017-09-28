@@ -35,16 +35,10 @@ from page import MainPage
 # @TODO: Put in an ENV var or config file (env.py)
 DOMAIN = "http://grofers.com"
 
-def set_up_selenium(context):
-    driver = webdriver.Safari()
-    driver.set_window_size(1290, 960)
-    driver.set_window_position(0, 0)
-    return driver
 
 @given('a user is on the "{url}" URL')
 def step_given_homepage(context, url):
-    driver = set_up_selenium(context)
-    context.driver = driver
+    driver = context.driver
     driver.get(DOMAIN + url)
     context.page = MainPage(driver)
 

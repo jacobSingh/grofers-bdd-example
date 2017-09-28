@@ -44,7 +44,7 @@ jobs:
           name: run tests
           command: |
             . venv/bin/activate
-            behave --junit -o test-reports
+            behave -tquicktest --junit -o test-reports
 
       - store_artifacts:
           path: test-reports

@@ -14,7 +14,7 @@ Scenario: Adding muliple products increments the total
     When 3 quantity of the first product is added to cart
     Then the cart total will be equal to 3 times the price of the product
 
-@manual
+@quicktest
 Scenario: Fruit and veg cart page
     Given a user is on the "/cn/fruits-vegetables/cid/9" URL
     And the user chooses New Delhi as their location
