@@ -21,8 +21,8 @@ def set_up_selenium():
 			'browserName': "chrome",
 			'version': "31",
 		}
-		username = os.getenv['SAUCE_USERNAME']
-		access_key = os.getenv['SAUCE_ACCESS_KEY']
+		username = os.getenv('SAUCE_USERNAME')
+		access_key = os.getenv('SAUCE_ACCESS_KEY')
 		driver = webdriver.Remote(
 			command_executor='http://{}:{}@ondemand.saucelabs.com:80/wd/hub'.format(username, access_key),
 			desired_capabilities=desired_cap)
