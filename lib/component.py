@@ -20,8 +20,6 @@ class ProductCardComponent(BasePageComponent):
 
 
     def add_to_cart(self, qty):
-        if (qty > 1):
-            raise Exception("Quantity greater than 1 not supported right now")
         driver = self.element
         WebDriverWait(driver, 10).until(
             lambda driver: driver.find_element(*ProductCardLocators.ADD_BUTTON))
@@ -39,22 +37,20 @@ class ProductCardComponent(BasePageComponent):
                 return False
 
         WebDriverWait(driver, 10).until(
-            lambda driver: is_int(driver.find_element(*ProductCardLocators.QUANTITY_SELECTOR).text))
+            lambda driver: driver.find_element(*ProductCardLocators.QUANTITY_SELECTOR).text != "Add To Cart")
 
         def get_current_qty():
             driver = self.element
             return int(driver.find_element(*ProductCardLocators.QUANTITY_SELECTOR).text)
 
-        while qty < get_current_qty():
-            pp(get_current_qty())
-
-        # Get the Add button
-        # Click it (and wait)
-        # Get the quantity selector (and wait)
-        # Get the qty label
-        # While qty label < qty AND i < totalqty
-        # click on + or -
-        # i++
+        while qty > get_current_qty():
+            current_qty = get_current_qty()
+            WebDriverWait(driver, 10).until(
+                lambda driver: driver.find_element(*ProductCardLocators.PLUS_BUTTON))
+            plus_button = driver.find_element(*ProductCardLocators.PLUS_BUTTON)
+            plus_button.click()
+            WebDriverWait(driver, 10).until(
+                lambda x: current_qty != get_current_qty())
 
 class ShoppingCartComponent(BasePageComponent):
     def __getattr__(self, key):
